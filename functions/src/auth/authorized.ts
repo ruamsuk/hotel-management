@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 /**
  * @param opts
@@ -8,11 +8,11 @@ export function isAuthorized(opts: {
   allowSameUser?: boolean;
 }) {
   return (req: Request, res: Response, next: NextFunction) => {
-    const { role, email, uid } = res.locals;
-    const { id } = req.params;
+    const {role, email, uid} = res.locals;
+    const {id} = req.params;
 
     if (email === 'r.wathana@gmail.com') {
-      // return next();
+      return next();
     }
 
     if (opts.allowSameUser && id && uid === id) {
